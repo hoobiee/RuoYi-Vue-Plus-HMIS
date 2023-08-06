@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.hmis.mapper.HtlHotelMapper">
+
+    <resultMap type="com.ruoyi.hmis.domain.HtlHotel" id="HtlHotelResult">
+        <result property="hotelId" column="hotel_id"/>
+        <result property="hotelName" column="hotel_name"/>
+        <result property="hotelNameEn" column="hotel_name_en"/>
+        <result property="cityName" column="city_name"/>
+        <result property="star" column="star"/>
+        <result property="hotelPhone" column="hotel_phone"/>
+        <result property="openingTime" column="opening_time"/>
+        <result property="decorateTime" column="decorate_time"/>
+        <result property="introduction" column="introduction"/>
+        <result property="canclePolicy" column="cancle_policy"/>
+        <result property="creditCards" column="credit_cards"/>
+        <result property="facilities" column="facilities"/>
+        <result property="address" column="address"/>
+        <result property="addressEn" column="address_en"/>
+        <result property="creator" column="creator"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifier" column="modifier"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="gaodeLat" column="gaode_lat"/>
+        <result property="gaodeLon" column="gaode_lon"/>
+        <result property="googleLat" column="google_lat"/>
+        <result property="googleLon" column="google_lon"/>
+        <result property="baiduLat" column="baidu_lat"/>
+        <result property="baiduLon" column="baidu_lon"/>
+        <result property="destinationLable" column="destination_lable"/>
+    </resultMap>
+
+
+</mapper>

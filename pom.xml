@@ -303,6 +303,13 @@
                 <version>${ruoyi-vue-plus.version}</version>
             </dependency>
 
+            <!-- 酒店模块-->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>ruoyi-hmis</artifactId>
+                <version>${ruoyi-vue-plus.version}</version>
+            </dependency>
+
             <!-- 通用工具-->
             <dependency>
                 <groupId>com.ruoyi</groupId>
@@ -345,6 +352,7 @@
         <module>ruoyi-extend</module>
         <module>ruoyi-oss</module>
         <module>ruoyi-sms</module>
+        <module>ruoyi-hmis</module>
     </modules>
     <packaging>pom</packaging>
 
