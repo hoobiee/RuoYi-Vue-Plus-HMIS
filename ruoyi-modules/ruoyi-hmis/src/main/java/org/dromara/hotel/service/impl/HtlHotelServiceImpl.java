@@ -1,23 +1,28 @@
 package org.dromara.hotel.service.impl;
 
-import org.dromara.common.core.utils.MapstructUtils;
-import org.dromara.common.core.utils.StringUtils;
-import org.dromara.common.mybatis.core.page.TableDataInfo;
-import org.dromara.common.mybatis.core.page.PageQuery;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import cn.hutool.core.lang.PatternPool;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
+import org.dromara.common.core.domain.model.LoginUser;
+import org.dromara.common.core.service.UserService;
+import org.dromara.common.core.utils.MapstructUtils;
+import org.dromara.common.core.utils.StringUtils;
+import org.dromara.common.mybatis.core.page.PageQuery;
+import org.dromara.common.mybatis.core.page.TableDataInfo;
+import org.dromara.common.satoken.utils.LoginHelper;
 import org.dromara.hotel.domain.HtlHotel;
+import org.dromara.hotel.domain.bo.HtlHotelBo;
 import org.dromara.hotel.domain.vo.HtlHotelVo;
 import org.dromara.hotel.mapper.HtlHotelMapper;
 import org.dromara.hotel.service.IHtlHotelService;
 import org.springframework.stereotype.Service;
-import org.dromara.hotel.domain.bo.HtlHotelBo;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Collection;
+import java.util.regex.Pattern;
 
 /**
  * 酒店详情Service业务层处理
@@ -30,6 +35,8 @@ import java.util.Collection;
 public class HtlHotelServiceImpl implements IHtlHotelService {
 
     private final HtlHotelMapper baseMapper;
+
+    private final UserService userService;
 
     /**
      * 查询酒店详情
@@ -46,7 +53,19 @@ public class HtlHotelServiceImpl implements IHtlHotelService {
     public TableDataInfo<HtlHotelVo> queryPageList(HtlHotelBo bo, PageQuery pageQuery) {
         LambdaQueryWrapper<HtlHotel> lqw    = buildQueryWrapper(bo);
         Page<HtlHotelVo>             result = baseMapper.selectVoPage(pageQuery.build(), lqw);
+        convertUserName(result.getRecords());
         return TableDataInfo.build(result);
+    }
+
+    /**
+     * 转换用户名
+     * @param records
+     */
+    private void convertUserName(List<HtlHotelVo> records) {
+        records.forEach(hotel -> {
+            hotel.setCreateBy(userService.selectUserNameById(Long.valueOf(hotel.getCreateBy())));
+            hotel.setUpdateBy(userService.selectUserNameById(Long.valueOf(hotel.getUpdateBy())));
+        });
     }
 
     /**
@@ -55,7 +74,9 @@ public class HtlHotelServiceImpl implements IHtlHotelService {
     @Override
     public List<HtlHotelVo> queryList(HtlHotelBo bo) {
         LambdaQueryWrapper<HtlHotel> lqw = buildQueryWrapper(bo);
-        return baseMapper.selectVoList(lqw);
+        List<HtlHotelVo>             htlHotelVos = baseMapper.selectVoList(lqw);
+        convertUserName(htlHotelVos);
+        return htlHotelVos;
     }
 
     private LambdaQueryWrapper<HtlHotel> buildQueryWrapper(HtlHotelBo bo) {
@@ -99,6 +120,9 @@ public class HtlHotelServiceImpl implements IHtlHotelService {
     public Boolean insertByBo(HtlHotelBo bo) {
         HtlHotel add = MapstructUtils.convert(bo, HtlHotel.class);
         validEntityBeforeSave(add);
+        LoginUser loginUser = LoginHelper.getLoginUser();
+        Long             userId    = loginUser.getUserId();
+        bo.setCreateBy(userId);
         boolean flag = baseMapper.insert(add) > 0;
         if (flag) {
             bo.setHotelId(add.getHotelId());
@@ -121,6 +145,22 @@ public class HtlHotelServiceImpl implements IHtlHotelService {
      */
     private void validEntityBeforeSave(HtlHotel entity){
         //TODO 做一些数据校验,如唯一约束
+        //正则校验手机
+        if (StringUtils.isBlank(entity.getHotelPhone())) {
+            throw new IllegalArgumentException("手机号不能为空");
+        }
+        Pattern mobile = PatternPool.MOBILE;
+        if(!mobile.matcher(entity.getHotelPhone()).matches()){
+            throw new IllegalArgumentException("手机号格式不正确");
+        }
+        // 地址校验
+        if (StringUtils.isBlank(entity.getAddress())) {
+            throw new IllegalArgumentException("地址不能为空");
+        }
+        // 酒店名称
+        if (StringUtils.isBlank(entity.getHotelName())) {
+            throw new IllegalArgumentException("酒店名称不能为空");
+        }
     }
 
     /**
