@@ -1,0 +1,152 @@
+package org.dromara.order.domain.vo;
+
+import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
+import com.alibaba.excel.annotation.ExcelProperty;
+import lombok.Data;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+
+/**
+ * 订单视图对象 ord_order
+ *
+ * @author hmis
+ * @date 2023-12-11
+ */
+@Data
+@ExcelIgnoreUnannotated
+public class OrdOrderBaseVo implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 订单ID
+     */
+    @ExcelProperty(value = "订单ID")
+    private Long orderId;
+
+    /**
+     * 订单编号
+     */
+    @ExcelProperty(value = "订单编号")
+    private String orderNo;
+
+    /**
+     * 渠道订单号
+     */
+    @ExcelProperty(value = "渠道订单号")
+    private String channelNo;
+
+    /**
+     * 供货单编号
+     */
+    @ExcelProperty(value = "供货单编号")
+    private String supplyOrderNo;
+
+    /**
+     * 跟单员
+     */
+    @ExcelProperty(value = "跟单员")
+    private String processors;
+
+    /**
+     * 入住时间
+     */
+    @ExcelProperty(value = "入住时间")
+    private Date checkInTime;
+
+    /**
+     * 离店时间
+     */
+    @ExcelProperty(value = "离店时间")
+    private Date checkOutTime;
+
+    /**
+     * 订单来源
+     */
+    @ExcelProperty(value = "订单来源")
+    private String orderSource;
+
+    /**
+     * 结算方式
+     * 月结、现结 、预付 、后付 周结 、日结
+     */
+    @ExcelProperty(value = "结算方式")
+    private String settlementType;
+
+    /**
+     * 客户备注
+     */
+    @ExcelProperty(value = "客户备注")
+    private String guestRemark;
+
+    /**
+     * 总售价
+     */
+    @ExcelProperty(value = "总售价")
+    private BigDecimal totalSalePrice;
+
+    /**
+     * 总底价
+     */
+    @ExcelProperty(value = "总底价")
+    private BigDecimal totalBasePrice;
+
+    /**
+     * 订单状态
+     */
+    @ExcelProperty(value = "订单状态")
+    private String orderStatus;
+
+    /**
+     * 商家编码
+     */
+    @ExcelProperty(value = "商家编码")
+    private String merchantCode;
+
+    /**
+     * 酒店名称
+     */
+    @ExcelProperty(value = "酒店名称")
+    private String hotelName;
+
+    /**
+     * 产品名称
+     */
+    @ExcelProperty(value = "产品名称")
+    private String productName;
+
+    /**
+     * 房型名称
+     */
+    @ExcelProperty(value = "房型名称")
+    private String roomName;
+
+    /**
+     * 客人姓名
+     */
+    @ExcelProperty(value = "客人姓名")
+    private String guestName;
+
+    /**
+     * 城市
+     */
+    @ExcelProperty(value = "城市")
+    private String city;
+
+    /**
+     * 房间数量
+     */
+    @ExcelProperty(value = "房间数量")
+    private Integer roomNum;
+
+    /**
+     * 入住人数
+     */
+    @ExcelProperty(value = "入住人数")
+    private Integer guestNum;
+}

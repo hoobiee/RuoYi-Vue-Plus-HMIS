@@ -43,7 +43,9 @@ public class HtlHotelServiceImpl implements IHtlHotelService {
      */
     @Override
     public HtlHotelVo queryById(Long hotelId){
-        return baseMapper.selectVoById(hotelId);
+        HtlHotelVo htlHotelVo = baseMapper.selectVoById(hotelId);
+        convertUserName(List.of(htlHotelVo));
+        return htlHotelVo;
     }
 
     /**
