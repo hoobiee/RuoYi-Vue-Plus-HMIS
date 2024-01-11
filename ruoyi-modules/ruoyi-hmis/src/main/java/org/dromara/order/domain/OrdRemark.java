@@ -22,20 +22,20 @@ public class OrdRemark extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     *
+     * 备注ID
      */
     @TableId(value = "remark_id")
     private Long remarkId;
 
     /**
-     *
+     * 备注类型
      */
     private String remarkType;
 
     /**
-     *
+     * 描述
      */
-    private String desc;
+    private String ordDesc;
 
     /**
      * 订单编号

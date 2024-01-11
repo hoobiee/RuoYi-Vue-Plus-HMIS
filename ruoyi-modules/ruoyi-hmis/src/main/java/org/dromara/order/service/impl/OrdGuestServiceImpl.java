@@ -40,6 +40,16 @@ public class OrdGuestServiceImpl implements IOrdGuestService {
     }
 
     /**
+     * 根据订单号查询订单客人
+     */
+    @Override
+    public OrdGuestVo queryByOrderId(String orderId){
+        LambdaQueryWrapper<OrdGuest> lqw = Wrappers.lambdaQuery();
+        lqw.eq(StringUtils.isNotBlank(orderId), OrdGuest::getOrderId, orderId);
+        return baseMapper.selectVoOne(lqw);
+    }
+
+    /**
      * 查询订单客人列表
      */
     @Override

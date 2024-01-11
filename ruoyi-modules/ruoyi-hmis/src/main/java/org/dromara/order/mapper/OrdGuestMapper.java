@@ -1,8 +1,8 @@
 package org.dromara.order.mapper;
 
+import org.dromara.common.mybatis.core.mapper.BaseMapperPlus;
 import org.dromara.order.domain.OrdGuest;
 import org.dromara.order.domain.vo.OrdGuestVo;
-import org.dromara.common.mybatis.core.mapper.BaseMapperPlus;
 
 /**
  * 订单客人Mapper接口
@@ -11,5 +11,7 @@ import org.dromara.common.mybatis.core.mapper.BaseMapperPlus;
  * @date 2023-12-13
  */
 public interface OrdGuestMapper extends BaseMapperPlus<OrdGuest, OrdGuestVo> {
+
+    OrdGuest selectOrdGuestVoByOrderId(Long orderId);
 
 }

@@ -4,4 +4,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dromara.order.mapper.OrdRemarkMapper">
 
+    <resultMap id="BaseResultMap" type="org.dromara.order.domain.OrdRemark">
+        <result column="remark_id" property="remarkId"/>
+        <result column="remark_type" property="remarkType"/>
+        <result column="ord_desc" property="ordDesc"/>
+        <result column="order_id" property="orderId"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+
+        <!--@sql select -->remark_id, remark_type, ord_desc, order_id, create_dept, create_by, create_time, update_by, update_time<!--@sql from ord_remark -->
+    </sql>
+
+    <select id="selectOrdRemarkVoByOrderId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_remark
+        where order_id = #{orderId}
+    </select>
 </mapper>

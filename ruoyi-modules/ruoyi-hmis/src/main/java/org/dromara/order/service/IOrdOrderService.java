@@ -27,6 +27,8 @@ public interface IOrdOrderService {
      */
     TableDataInfo<OrdOrderVo> queryPageList(OrdOrderBo bo, PageQuery pageQuery);
 
+    TableDataInfo<OrdOrderVo> queryBasePageList(OrdOrderBo bo, PageQuery pageQuery);
+
     /**
      * 查询订单列表
      */

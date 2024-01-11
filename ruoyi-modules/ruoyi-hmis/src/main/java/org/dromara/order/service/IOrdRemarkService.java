@@ -22,6 +22,11 @@ public interface IOrdRemarkService {
     OrdRemarkVo queryById(Long remarkId);
 
     /**
+     * 根据订单号查询订单备注
+     */
+    OrdRemarkVo queryByOrderId(String orderId);
+
+    /**
      * 查询订单备注列表
      */
     TableDataInfo<OrdRemarkVo> queryPageList(OrdRemarkBo bo, PageQuery pageQuery);

@@ -31,6 +31,7 @@ public class OrdOrderServiceImpl implements IOrdOrderService {
 
     private final OrdOrderMapper baseMapper;
 
+
     /**
      * 查询订单
      */
@@ -50,6 +51,18 @@ public class OrdOrderServiceImpl implements IOrdOrderService {
         Page<OrdOrderVo>             result         = ordOrderVoPage;
         return TableDataInfo.build(result);
     }
+
+    /**
+     * 查询订单列表
+     */
+    @Override
+    public TableDataInfo<OrdOrderVo> queryBasePageList(OrdOrderBo bo, PageQuery pageQuery) {
+        LambdaQueryWrapper<OrdOrder> lqw            = buildQueryWrapper(bo);
+        Page<OrdOrderVo>             ordOrderVoPage = baseMapper.selectVoPage(pageQuery.build(), lqw);
+        Page<OrdOrderVo>             result         = ordOrderVoPage;
+        return TableDataInfo.build(result);
+    }
+
 
     /**
      * 查询订单列表

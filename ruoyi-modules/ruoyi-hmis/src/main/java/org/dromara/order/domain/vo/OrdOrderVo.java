@@ -27,6 +27,17 @@ public class OrdOrderVo implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    /*
+    @ExcelProperty(value = "订单客人信息")
+    private OrdGuestVo ordGuestVo;
+
+    @ExcelProperty(value = "订单备注信息")
+    private OrdRemarkVo ordRemarkVo;
+
+    @ExcelProperty(value = "订单发票信息")
+    private OrdInvoiceVo ordInvoiceVo;
+    */
+
     /**
      * 订单ID
      */

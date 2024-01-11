@@ -19,7 +19,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("ord_order")
-public class OrdOrder extends BaseEntity {
+public class OrdOrderBase extends BaseEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -95,8 +95,10 @@ public class OrdOrder extends BaseEntity {
      */
     private String merchantCode;
 
+    @TableId(value = "order_id")
     private OrdRemark ordRemark;
 
+    @TableId(value = "order_id")
     private OrdGuest ordGuest;
 
 }

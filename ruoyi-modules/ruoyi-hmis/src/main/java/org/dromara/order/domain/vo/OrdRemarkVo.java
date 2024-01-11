@@ -25,22 +25,22 @@ public class OrdRemarkVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     *
+     * 备注ID
      */
-    @ExcelProperty(value = "")
+    @ExcelProperty(value = "备注ID")
     private Long remarkId;
 
     /**
-     *
+     * 备注类型
      */
-    @ExcelProperty(value = "")
+    @ExcelProperty(value = "备注类型")
     private String remarkType;
 
     /**
-     *
+     * 描述
      */
-    @ExcelProperty(value = "")
-    private String desc;
+    @ExcelProperty(value = "描述")
+    private String ordDesc;
 
     /**
      * 订单编号

@@ -4,4 +4,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dromara.order.mapper.OrdGuestMapper">
 
+    <!--BaseResultMap-->
+    <resultMap id="BaseResultMap" type="org.dromara.order.domain.OrdGuest">
+        <result column="guest_id" property="guestId"/>
+        <result column="last_name" property="lastName"/>
+        <result column="first_name" property="firstName"/>
+        <result column="name" property="name"/>
+        <result column="order_id" property="orderId"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@sql select -->guest_id, last_name, first_name, name, order_id, create_dept, create_by, create_time, update_by, update_time<!--@sql from ord_guest -->
+    </sql>
+
+    <select id="selectOrdGuestVoByOrderId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_guest
+        where order_id = #{orderNo}
+    </select>
+
 </mapper>

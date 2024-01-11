@@ -22,6 +22,11 @@ public interface IOrdGuestService {
     OrdGuestVo queryById(Long guestId);
 
     /**
+     * 根据订单号查询订单客人
+     */
+    OrdGuestVo queryByOrderId(String orderId);
+
+    /**
      * 查询订单客人列表
      */
     TableDataInfo<OrdGuestVo> queryPageList(OrdGuestBo bo, PageQuery pageQuery);

@@ -2,7 +2,9 @@ package org.dromara.order.domain.vo;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
+import io.github.linpeilie.annotations.AutoMapping;
 import lombok.Data;
+import org.dromara.order.domain.OrdRemark;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -73,7 +75,6 @@ public class OrdOrderBaseVo implements Serializable {
 
     /**
      * 结算方式
-     * 月结、现结 、预付 、后付 周结 、日结
      */
     @ExcelProperty(value = "结算方式")
     private String settlementType;
@@ -108,45 +109,13 @@ public class OrdOrderBaseVo implements Serializable {
     @ExcelProperty(value = "商家编码")
     private String merchantCode;
 
-    /**
-     * 酒店名称
-     */
-    @ExcelProperty(value = "酒店名称")
-    private String hotelName;
+    // 客户VO
+    @ExcelProperty(value = "订单VO", index = 1)
+    private OrdGuestVo guestVo;
 
-    /**
-     * 产品名称
-     */
-    @ExcelProperty(value = "产品名称")
-    private String productName;
+    // 备注VO
+    @ExcelProperty(value = "备注VO", index = 2)
+    @AutoMapping
+    private OrdRemark remark;
 
-    /**
-     * 房型名称
-     */
-    @ExcelProperty(value = "房型名称")
-    private String roomName;
-
-    /**
-     * 客人姓名
-     */
-    @ExcelProperty(value = "客人姓名")
-    private String guestName;
-
-    /**
-     * 城市
-     */
-    @ExcelProperty(value = "城市")
-    private String city;
-
-    /**
-     * 房间数量
-     */
-    @ExcelProperty(value = "房间数量")
-    private Integer roomNum;
-
-    /**
-     * 入住人数
-     */
-    @ExcelProperty(value = "入住人数")
-    private Integer guestNum;
 }

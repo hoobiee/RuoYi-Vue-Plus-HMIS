@@ -51,8 +51,18 @@ public class OrdOrderController extends BaseController {
     @SaCheckPermission("hmis:order:list")
     @GetMapping("/list")
     public TableDataInfo<OrdOrderVo> list(OrdOrderBo bo, PageQuery pageQuery) {
-        return ordOrderService.queryPageList(bo, pageQuery);
+        return ordOrderService.queryBasePageList(bo, pageQuery);
     }
+
+    /**
+     * 查询订单列表
+     */
+    @SaCheckPermission("hmis:order:listBase")
+    @GetMapping("/listBase")
+    public TableDataInfo<OrdOrderVo> listBase(OrdOrderBo bo, PageQuery pageQuery) {
+        return ordOrderService.queryBasePageList(bo, pageQuery);
+    }
+
 
     /**
      * 导出订单列表

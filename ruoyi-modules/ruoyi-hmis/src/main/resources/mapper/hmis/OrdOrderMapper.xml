@@ -2,6 +2,73 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hmis.ruoyi.order.mapper.OrdOrderMapper">
+<mapper namespace="org.dromara.order.mapper.OrdOrderMapper">
 
+    <resultMap id="BaseResultMap" type="org.dromara.order.domain.OrdOrder">
+        <result column="order_id" property="orderId"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="channel_no" property="channelNo"/>
+        <result column="supply_order_no" property="supplyOrderNo"/>
+        <result column="processors" property="processors"/>
+        <result column="check_in_time" property="checkInTime"/>
+        <result column="check_out_time" property="checkOutTime"/>
+        <result column="order_source" property="orderSource"/>
+        <result column="settlement_type" property="settlementType"/>
+        <result column="guest_remark" property="guestRemark"/>
+        <result column="total_sale_price" property="totalSalePrice"/>
+        <result column="total_base_price" property="totalBasePrice"/>
+        <result column="order_status" property="orderStatus"/>
+        <result column="merchant_code" property="merchantCode"/>
+        <result column="create_dept" property="createDept"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="ordRemark" javaType="org.dromara.order.domain.OrdRemark"
+                        column="order_id" select="org.dromara.order.mapper.OrdRemarkMapper.selectOrdRemarkVoByOrderId"/>
+        <association property="ordGuest" javaType="org.dromara.order.domain.OrdGuest"
+                        column="order_id" select="org.dromara.order.mapper.OrdGuestMapper.selectOrdGuestVoByOrderId"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        <!--@sql select -->order_id,
+                           order_no,
+                           channel_no,
+                           supply_order_no,
+                           processors,
+                           check_in_time,
+                           check_out_time,
+                           order_source,
+                           settlement_type,
+                           guest_remark,
+                           total_sale_price,
+                           total_base_price,
+                           order_status,
+                           merchant_code,
+                           create_dept,
+                           create_by,
+                           create_time,
+                           update_by,
+                           update_time<!--@sql from ord_order -->
+    </sql>
+
+    <select id="selectOrdOrderVoByOrderId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_order
+        where order_id = #{orderId}
+    </select>
+
+    <select id="selectOrdOrderVoByOrderNos" resultType="org.dromara.order.domain.OrdOrder">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_order
+        join ord_guest og on ord_order.order_id = og.order_id
+        join ord_remark o on og.order_id = o.order_id
+        where order_no in
+        <foreach collection="orderNos" item="orderNo" open="(" separator="," close=")">
+            #{orderNo}
+        </foreach>
+    </select>
 </mapper>

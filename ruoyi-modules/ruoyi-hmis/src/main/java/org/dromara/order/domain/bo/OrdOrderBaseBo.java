@@ -1,25 +1,26 @@
-package org.dromara.order.domain;
+package org.dromara.order.domain.bo;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.dromara.common.mybatis.core.domain.BaseEntity;
+import org.dromara.order.domain.OrdOrder;
 
 import java.io.Serial;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 订单对象 ord_order
+ * 订单业务对象 ord_order
  *
  * @author hmis
  * @date 2023-12-11
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("ord_order")
-public class OrdOrder extends BaseEntity {
+@AutoMapper(target = OrdOrder.class, reverseConvertGenerate = false)
+public class OrdOrderBaseBo extends BaseEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -95,8 +96,8 @@ public class OrdOrder extends BaseEntity {
      */
     private String merchantCode;
 
-    private OrdRemark ordRemark;
+    private OrdRemarkBo ordRemarkBo;
 
-    private OrdGuest ordGuest;
+    private OrdGuestBo ordGuestBo;
 
 }

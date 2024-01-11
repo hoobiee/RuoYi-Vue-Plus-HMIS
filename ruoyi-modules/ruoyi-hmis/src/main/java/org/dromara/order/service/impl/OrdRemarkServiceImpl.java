@@ -38,6 +38,15 @@ public class OrdRemarkServiceImpl implements IOrdRemarkService {
     public OrdRemarkVo queryById(Long remarkId){
         return baseMapper.selectVoById(remarkId);
     }
+    /**
+     * 根据订单号查询订单备注
+     */
+    @Override
+    public OrdRemarkVo queryByOrderId(String orderId){
+        LambdaQueryWrapper<OrdRemark> lqw = Wrappers.lambdaQuery();
+        lqw.eq(StringUtils.isNotBlank(orderId), OrdRemark::getOrderId, orderId);
+        return baseMapper.selectVoOne(lqw);
+    }
 
     /**
      * 查询订单备注列表
@@ -62,7 +71,7 @@ public class OrdRemarkServiceImpl implements IOrdRemarkService {
         Map<String, Object> params = bo.getParams();
         LambdaQueryWrapper<OrdRemark> lqw = Wrappers.lambdaQuery();
         lqw.eq(StringUtils.isNotBlank(bo.getRemarkType()), OrdRemark::getRemarkType, bo.getRemarkType());
-        lqw.eq(StringUtils.isNotBlank(bo.getDesc()), OrdRemark::getDesc, bo.getDesc());
+        lqw.eq(StringUtils.isNotBlank(bo.getDesc()), OrdRemark::getOrdDesc, bo.getDesc());
         lqw.eq(bo.getOrderId() != null, OrdRemark::getOrderId, bo.getOrderId());
         return lqw;
     }
