@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://gitee.com/dromara/RuoYi-Vue-Plus/blob/master/LICENSE)
 [![使用IntelliJ IDEA开发维护](https://img.shields.io/badge/IntelliJ%20IDEA-提供支持-blue.svg)](https://www.jetbrains.com/?from=RuoYi-Vue-Plus)
 <br>
-[![RuoYi-Vue-Plus](https://img.shields.io/badge/RuoYi_Vue_Plus-5.1.1-success.svg)](https://gitee.com/dromara/RuoYi-Vue-Plus)
+[![RuoYi-Vue-Plus](https://img.shields.io/badge/RuoYi_Vue_Plus-5.1.2-success.svg)](https://gitee.com/dromara/RuoYi-Vue-Plus)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.1-blue.svg)]()
 [![JDK-17](https://img.shields.io/badge/JDK-17-green.svg)]()
 [![JDK-21](https://img.shields.io/badge/JDK-21-green.svg)]()
@@ -23,7 +23,13 @@
 
 > 前端项目地址: [plus-ui](https://gitee.com/JavaLionLi/plus-ui)
 
-> 文档地址: [plus-doc](https://plus-doc.dromara.org) - [plus-doc(国内备用)](https://dromara.gitee.io/plus-doc)
+> 文档地址: [plus-doc](https://plus-doc.dromara.org)
+
+## 赞助商
+
+MaxKey - https://gitee.com/dromara/MaxKey <br>
+CCFlow - https://gitee.com/opencc/RuoYi-JFlow <br>
+[如何成为赞助商 加群联系作者详谈](https://plus-doc.dromara.org/#/common/add_group)
 
 # 本框架与RuoYi的功能差异
 
@@ -36,7 +42,7 @@
 | 权限认证        | 采用 Sa-Token、Jwt 静态使用功能齐全 低耦合 高扩展                                                                                  | Spring Security 配置繁琐扩展性极差                                                          |
 | 权限注解        | 采用 Sa-Token 支持注解 登录校验、角色校验、权限校验、二级认证校验、HttpBasic校验、忽略校验<br/>角色与权限校验支持多种条件 如 `AND` `OR` 或 `权限 OR 角色` 等复杂表达式        | 只支持是否存在匹配                                                                          |
 | 三方鉴权        | 采用 JustAuth 第三方登录组件 支持微信、钉钉等数十种三方认证                                                                               | 无                                                                                  |
-| 关系数据库支持     | 原生支持 MySQL、Oracle、PostgreSQL、SQLServer<br/>可同时使用异构切换                                                              | 支持 Mysql、Oracle 不支持同时使用、不支持异构切换                                                    |
+| 关系数据库支持     | 原生支持 MySQL、Oracle、PostgreSQL、SQLServer<br/>可同时使用异构切换(支持其他 mybatis-plus 支持的所有数据库 只需要增加jdbc依赖即可使用 达梦金仓等均有成功案例)      | 支持 Mysql、Oracle 不支持同时使用、不支持异构切换                                                    |
 | 缓存数据库       | 支持 Redis 5-7 支持大部分新功能特性 如 分布式限流、分布式队列                                                                             | Redis 简单 get set 支持                                                                |
 | Redis客户端    | 采用 Redisson Redis官方推荐 基于Netty的客户端工具<br/>支持Redis 90%以上的命令 底层优化规避很多不正确的用法 例如: keys被转换为scan<br/>支持单机、哨兵、单主集群、多主集群等模式 | Lettuce + RedisTemplate 支持模式少 工具使用繁琐<br/>连接池采用 common-pool Bug多经常性出问题              |
 | 缓存注解        | 采用 Spring-Cache 注解 对其扩展了实现支持了更多功能<br/>例如 过期时间 最大空闲时间 组最大长度等 只需一个注解即可完成数据自动缓存                                      | 需手动编写Redis代码逻辑                                                                     |
@@ -115,13 +121,12 @@
 >
 >[部署项目 必看](https://plus-doc.dromara.org/#/ruoyi-vue-plus/quickstart/deploy)
 >>[https://plus-doc.dromara.org/#/ruoyi-vue-plus/quickstart/deploy](https://plus-doc.dromara.org/#/ruoyi-vue-plus/quickstart/deploy)
-> 
+>
+>[如何加群](https://plus-doc.dromara.org/#/common/add_group)
+>>[https://plus-doc.dromara.org/#/common/add_group](https://plus-doc.dromara.org/#/common/add_group)
+>
 >[参考文档 Wiki](https://plus-doc.dromara.org)
 >>[https://plus-doc.dromara.org](https://plus-doc.dromara.org)
-> 
->[参考文档(国内备份)](https://dromara.gitee.io/plus-doc)
->>[https://dromara.gitee.io/plus-doc](https://dromara.gitee.io/plus-doc)
-
 
 ## 软件架构图
 
@@ -130,18 +135,6 @@
 ## 如何参与贡献
 
 [参与贡献的方式 https://plus-doc.dromara.org/#/common/contribution](https://plus-doc.dromara.org/#/common/contribution)
-
-### 其他
-
-* 定期同步升级 RuoYi-Vue 有用的更新
-* GitHub 地址 [RuoYi-Vue-Plus](https://github.com/dromara/RuoYi-Vue-Plus)
-* 微服务 分支 [RuoYi-Cloud-Plus](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus)
-* 前端项目 地址 [plus-ui](https://gitee.com/JavaLionLi/plus-ui)
-* 用户扩展项目 [扩展项目列表](https://plus-doc.dromara.org/#/ruoyi-vue-plus/extend-project/list)
-
-## 加群与捐献
->[加群与捐献](https://plus-doc.dromara.org/#/ruoyi-vue-plus/other/group_chat)
->>[https://plus-doc.dromara.org/#/ruoyi-vue-plus/other/group_chat](https://plus-doc.dromara.org/#/ruoyi-vue-plus/other/group_chat)
 
 ## 捐献作者
 作者为兼职做开源,平时还需要工作,如果帮到了您可以请作者吃个盒饭  
